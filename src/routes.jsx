@@ -70,3 +70,29 @@ export const routes = createBrowserRouter([
     ],
   },
 ]);
+
+/*Inicio: http://localhost:5173/
+
+
+
+Catálogo: http://localhost:5173/catalogo
+
+
+
+Carrito: http://localhost:5173/carrito
+
+
+
+Login: http://localhost:5173/login
+
+
+
+Registro: http://localhost:5173/registro
+
+
+
+Perfil: http://localhost:5173/perfil
+
+
+
+Comunidad: http://localhost:5173/comunidad*/
