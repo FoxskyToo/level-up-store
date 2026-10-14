@@ -9,6 +9,7 @@ import Carrito from "./pages/carrito/carrito";
 import Login from "./pages/login/login";
 import Registro from "./pages/registro/registro";
 import Perfil from "./pages/perfil/perfil";
+import Comunidad from "./pages/comunidad/comunidad";
 
 const PaginaTemporal = ({ titulo }) => (
   <section className="py-5 text-center">
@@ -48,7 +49,7 @@ export const routes = createBrowserRouter([
         },
         {
         path: "comunidad",
-        element: <PaginaTemporal titulo="Comunidad" />,
+        element: <Comunidad />,
         },
         {
         path: "eventos",

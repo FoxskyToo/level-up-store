@@ -1,9 +1,16 @@
 
 import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import { obtenerComprasPorUsuario } from "../../services/comprasService";
 
 function Perfil() {
-  const { usuario } = useAuth();
+    const { usuario } = useAuth();
+    const correoUsuario = usuario?.correo ?? usuario?.email;
+
+    const compras = obtenerComprasPorUsuario(correoUsuario);
+
+    const formatoPrecio = (precio) =>
+    `$${Number(precio).toLocaleString("es-CL")}`;
 
   if (!usuario) {
     return <Navigate to="/login" replace />;
@@ -79,10 +86,55 @@ function Perfil() {
             Historial de compras
           </h2>
 
-          <p className="text-secondary mb-0">
-            Aquí aparecerán tus compras cuando
-            implementemos el proceso de pago.
-          </p>
+
+        {compras.length === 0 ? (
+        <p className="text-secondary mb-0">
+            Todavía no has realizado compras.
+        </p>
+        ) : (
+        <div className="table-responsive">
+            <table className="table align-middle">
+            <thead>
+                <tr>
+                <th>Compra</th>
+                <th>Fecha</th>
+                <th>Productos</th>
+                <th>Descuento</th>
+                <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {compras.map((compra) => (
+                <tr key={compra.id}>
+                    <td>#{compra.id}</td>
+
+                    <td>
+                    {new Date(compra.fecha).toLocaleString("es-CL")}
+                    </td>
+
+                    <td>
+                    {compra.productos.reduce(
+                        (cantidad, producto) =>
+                        cantidad + producto.cantidad,
+                        0
+                    )}
+                    </td>
+
+                    <td>
+                    {formatoPrecio(compra.descuento)}
+                    </td>
+
+                    <td className="text-levelup-green fw-bold">
+                    {formatoPrecio(compra.total)}
+                    </td>
+                </tr>
+                ))}
+            </tbody>
+            </table>
+        </div>
+        )}
+
         </div>
       </div>
     </section>

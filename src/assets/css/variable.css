@@ -16,4 +16,8 @@
     /* Bordes */
     --color-borde: #2b2b2b;
     --color-borde-suave: #3a3a3a;
+
+    /* Tipografías */
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Roboto', sans-serif;
 }
